@@ -1,0 +1,35 @@
+### Ambiente Virtual ###
+venv/
+.env/
+.venv/
+env/
+
+### IDE ###
+.idea/
+*.swp
+*.swo
+
+### Python ###
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+
+### Dados ###
+data/credits.csv
+data/ratings.csv
+!data/ratings_small.csv
+!data/movies_metadata.csv
+!data/README.md
+
+### Sistemas ###
+.DS_Store
+Thumbs.db
+
+### Exceções (arquivos que DEVEM ser commitados) ###
+!requirements.txt
+!config.py
+!README.md
