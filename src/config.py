@@ -1,7 +1,6 @@
 import os
 from pathlib import Path
 
-
 class Config:
     # Obtém o caminho absoluto da pasta do projeto
     BASE_DIR = Path(__file__).parent.parent

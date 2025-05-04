@@ -1,20 +1,28 @@
 from src.config import Config
 
 class MovieRecommender:
-    def __init__(self, movie_patterns):
-        # Guarda os padrões descobertos
-        self.patterns = movie_patterns
+    def __init__(self, association_rules):
+        # Guarda as regras obtidas
+        self.rules = association_rules
 
-    def suggest_movies(self, user_history):
-        # Sugere filmes baseado no que o usuário já gostou
+    def recommend_from_history(self, user_history, top_n=5):
         recommendations = {}
+        for rule in self.rules:
+            if set(rule['antecedent']).issubset(set(user_history)):
+                for movie in rule['consequent']:
+                    if movie not in user_history:
+                        recommendations[movie] = max(recommendations.get(movie, 0), rule['confidence'])
+        # Ordenar as recomendações por confiança
+        sorted_recommendations = sorted(recommendations.items(), key=lambda x: x[1], reverse=True)
+        return [movie for movie, _ in sorted_recommendations[:top_n]]
 
-        # Para cada filme que o usuário gostou
-        for movie in user_history:
-            if movie in self.patterns:
-                # Calcula um score de recomendação
-                score = self.patterns[movie] / sum(self.patterns.values())
-                recommendations[movie] = score
-
-        # Retorna os TOP_N mais relevantes
-        return sorted(recommendations.items(), key=lambda x: x[1], reverse=True)[:Config.TOP_N_HISTORY]
+    def recommend_from_last_movie(self, last_movie, user_history, top_n=5):
+        recommendations = {}
+        for rule in self.rules:
+            if rule['antecedent'] == [last_movie]:
+                for movie in rule['consequent']:
+                    if movie not in user_history:
+                        recommendations[movie] = max(recommendations.get(movie, 0), rule['confidence'])
+        # Ordenar as recomendações por confiança
+        sorted_recommendations = sorted(recommendations.items(), key=lambda x: x[1], reverse=True)
+        return [movie for movie, _ in sorted_recommendations[:top_n]]
