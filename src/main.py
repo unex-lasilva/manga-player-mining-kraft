@@ -23,8 +23,8 @@ def main():
     # 4. Faz a recomendação de filmes
     user_history = user_movies[2]
     recommendations = recommender.recommend_from_history(user_history)
-    print(user_history)
-    print(recommendations)
+    print('Histórico de filmes assistidos:', user_history)
+    print('Recomendação com base no histórico:', recommendations)
 
 if __name__ == "__main__":
     main()
