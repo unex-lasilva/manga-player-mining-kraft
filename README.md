@@ -7,3 +7,5 @@ Link para o dataset: https://drive.google.com/drive/folders/1oVq3bZhEznLWbcabT3c
 1. Denilson Santos
 2. Luan Vinicius
 3. Rafael Pinto
+
+# Link para o relatório técnico no formato SBC: https://docs.google.com/document/d/1NejZ12hGQSVegrGZUOhIZfg19Wnmkkr4ZdhoxmYTrtw/edit?usp=sharing
